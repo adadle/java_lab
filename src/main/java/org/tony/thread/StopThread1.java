@@ -8,25 +8,33 @@ import java.util.concurrent.TimeUnit;
  */
 public class StopThread1 {
 
-    private static boolean req;
+    private  boolean req;
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("req now is : "+req);
+        final StopThread1 s = new StopThread1();
+        System.out.println("req now is : "+ s.req);
         Thread runThread = new Thread(new Runnable(){
 
             @Override
             public void run() {
                 int i =0 ;
-                while (!req){
+                while (! s.req){
                     i++;
                     System.out.println("now i: "+i);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
 
         runThread.start();
+        //JAVA SE 5/6 style.
         TimeUnit.SECONDS.sleep(1);
-        req = true;
+
+        s.req = true;
     }
 
 }

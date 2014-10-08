@@ -29,10 +29,6 @@ public class StartThread {
         }
         exec.shutdown();
 
-
-
-
-
     }
 }
 

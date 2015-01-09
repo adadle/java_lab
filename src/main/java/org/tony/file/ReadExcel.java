@@ -77,32 +77,16 @@ public class ReadExcel {
             format.setMaximumFractionDigits(2);
             format.setGroupingUsed(false);
 
-            double allAcc=0,pcAcc=0,mobileAcc=0;
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 String []  rowData = null;
                 Row row = sheet.getRow(i);
                 int cellNum = row.getLastCellNum();
-                rowData = new String[cellNum+3]; // we add three col to accumulate the value.
+                rowData = new String[cellNum]; // we add three col to accumulate the value.
                 for (int j = 0; j < cellNum; j++) {
                     Cell cell = row.getCell(j);
                     String cellData = getCellData(cell);
-                    if(j==2){// platform=all
-                        //
-                        allAcc += Double.valueOf(cellData);
-                    }
-                    if(j==3){// platform=pc
-                        //
-                        pcAcc += Double.valueOf(cellData);
-                    }
-                    if(j==4){// platform=mobile
-                        //
-                        mobileAcc += Double.valueOf(cellData);
-                    }
                     rowData[j] = cellData;
                 }
-                rowData[5] = format.format(allAcc);
-                rowData[6] = format.format(pcAcc);
-                rowData[7] = format.format(mobileAcc);
                 rowList.add(rowData);
             }
             return rowList;

@@ -1,9 +1,8 @@
 package org.tony.util;
 
-import java.security.MessageDigest;
-import java.text.DecimalFormat;
+import java.sql.Timestamp;
 import java.text.NumberFormat;
-import java.util.*;
+import java.text.ParseException;
 
 /**
  * Created by TonyLee on 2014/11/28.
@@ -11,23 +10,19 @@ import java.util.*;
  */
 public class CTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
        long a =1000;
-        NumberFormat  nf = NumberFormat.getIntegerInstance();
+        String b ="10%";
+        NumberFormat  nf = NumberFormat.getPercentInstance();
 //        nf.setDecimalSeparatorAlwaysShown(false);
         nf.setGroupingUsed(false);
-        System.out.println(nf.format(a));
+        System.out.println(nf.parse(b));
 
+
+        System.out.println(Timestamp.valueOf("2014-01-01 1:00:00").toString());
 
 
     }
-
-
-
-
-
-
-
 
     private static int shard(){
 //        String mid = "dff2b044578f53375185690aee87dbc250edafac";
